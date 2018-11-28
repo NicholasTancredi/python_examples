@@ -112,6 +112,14 @@ class Header(BaseModel):
             raise AuthorizationError(value=value)
         return value
 
+@typechecked
+class AssessmentType(Enum):
+    GAIT: str = 'GAIT'
+
+
+class PoseJob(BaseModel):
+    assessment_type: AssessmentType
+
 
 if __name__ == '__main__':
     parse = ArgumentParser()
@@ -186,5 +194,19 @@ if __name__ == '__main__':
                     json_input,
                     header.dict()
                 )
+
+            def test_pose_job(self):
+                # incoming data from some external source
+                incoming_data = {
+                    'assessment_type': 'GAIT'
+                }
+
+                job = PoseJob(**incoming_data)
+                self.assertEqual(
+                    incoming_data['assessment_type'],
+                    job.assessment_type.value
+                )
+                print('job.assessment_type: ', job.assessment_type)
+
 
         TextTestRunner().run(TestLoader().loadTestsFromTestCase(Test))
