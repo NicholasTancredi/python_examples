@@ -10,6 +10,7 @@ from unittest import TextTestRunner, TestLoader, TestCase
 from argparse import ArgumentParser
 from pytypes import typechecked
 from pydantic import validator, BaseModel, PydanticValueError
+from pydantic.dataclasses import dataclass
 from typing import NamedTuple, Tuple, Union
 from enum import Enum
 
@@ -67,8 +68,10 @@ def get_line_distance_polytype(line: Union[Line, Tuple[Point, Point], Tuple[Tupl
     )
 
 
-# Reference material for enums - https://docs.python.org/3/library/enum.html#creating-an-enum
-# It is important to note that enums are functional constants. We should refra
+# NOTE Reference material for enums - https://docs.python.org/3/library/enum.html#creating-an-enum
+# It is important to note that enums are functional constants. The importance of that is we should endure to use the functional constant whenever possible, and reserve the `value`
+# for the rare moment where we actually want to use the value (primarily for storage). This will have consequences for how we store and use data inside of data classes.
+ 
     # Note Nomenclature
     # The class TextAlign is an enumeration (or enum)
     # The attributes TextAlign.left, TextAlign.center, etc., are enumeration members (or enum members) and are functionally constants.
@@ -196,7 +199,7 @@ if __name__ == '__main__':
                 )
 
             def test_pose_job(self):
-                # incoming data from some external source
+                # NOTE incoming data from some external source
                 incoming_data = {
                     'assessment_type': 'GAIT'
                 }
