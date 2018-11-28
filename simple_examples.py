@@ -43,6 +43,8 @@ def get_line_distance(line: Line) -> float:
         line.end.y - line.start.y
     )
 
+
+@typechecked
 def WARNING_DONT_WRITE_LIKE_THIS_get_line_distance(line: Tuple[Tuple[int, int], Tuple[int, int]]) -> float:
     """
         NOTE: using the raw type 'get_line_distance' would be written like this.
@@ -72,6 +74,7 @@ class TextAlign(Enum):
     center: str = 'center'
 
 
+@typechecked
 def pad_text(text: str, text_align: TextAlign = TextAlign.left, width: int = 20, fillchar: str = '-') -> str:
     """
         This also has an example of a "python" switch statement equivalent using a dict
