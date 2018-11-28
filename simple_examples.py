@@ -17,7 +17,6 @@ from enum import Enum
 from math import hypot
 
 
-# NOTE: Real world example
 @typechecked
 class Point(NamedTuple):
     y: int
