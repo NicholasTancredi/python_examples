@@ -67,22 +67,21 @@ def get_line_distance_polytype(line: Union[Line, Tuple[Point, Point], Tuple[Tupl
     )
 
 
-@typechecked
-class TextAlign(Enum):
-    left: str = 'left'
-    right: str = 'right'
-    center: str = 'center'
+class TextAlign(str, Enum):
+    LEFT = 'LEFT'
+    RIGHT = 'RIGHT'
+    CENTER = 'CENTER'
 
 
 @typechecked
-def pad_text(text: str, text_align: TextAlign = TextAlign.left, width: int = 20, fillchar: str = '-') -> str:
+def pad_text(text: str, text_align: TextAlign = TextAlign.LEFT, width: int = 20, fillchar: str = '-') -> str:
     """
         This also has an example of a "python" switch statement equivalent using a dict
     """
     psuedo_switch_statement = {
-        TextAlign.left: text.ljust(width, fillchar),
-        TextAlign.right: text.rjust(width, fillchar),
-        TextAlign.center: text.center(width, fillchar),
+        TextAlign.LEFT: text.ljust(width, fillchar),
+        TextAlign.RIGHT: text.rjust(width, fillchar),
+        TextAlign.CENTER: text.center(width, fillchar),
     }
     return psuedo_switch_statement[text_align]
 
@@ -151,7 +150,9 @@ if __name__ == '__main__':
                 )
 
             def test_pad_text(self):
-                padded_text = pad_text('yolo', text_align = TextAlign.center)
+                # NOTE: Simple validating enum has str in it.
+                self.assertTrue('CENTER' in TextAlign.__members__)
+                padded_text = pad_text('yolo', text_align = TextAlign.CENTER)
                 print('padded_text: ', padded_text)
                 self.assertEqual(
                     padded_text,
