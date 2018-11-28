@@ -133,9 +133,8 @@ if __name__ == '__main__':
                 distance_b = get_line_distance(Line(Point(1, 2), Point(3, 4)))
                 print('distance_b: ', distance_b)
 
-                distance_c = get_line_distance_polytype(((1, 2), (3, 4)))
-
                 # NOTE: WARNING! This is not an example how I'd recommend writing this!
+                distance_c = get_line_distance_polytype(((1, 2), (3, 4)))
                 distance_d = WARNING_DONT_WRITE_LIKE_THIS_get_line_distance(((1, 2), (3, 4)))
 
                 self.assertEqual(
