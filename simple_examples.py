@@ -67,11 +67,20 @@ def get_line_distance_polytype(line: Union[Line, Tuple[Point, Point], Tuple[Tupl
     )
 
 
+# Reference material for enums - https://docs.python.org/3/library/enum.html#creating-an-enum
+# It is important to note that enums are functional constants. We should refra
+    # Note Nomenclature
+    # The class TextAlign is an enumeration (or enum)
+    # The attributes TextAlign.left, TextAlign.center, etc., are enumeration members (or enum members) and are functionally constants.
+    # The enum members have names and values (the name of TextAlign.left is left, the value of TextAlign.hidden is 0, etc.)
+
 @typechecked
 class TextAlign(Enum):
     left: str = 'left'
     right: str = 'right'
     center: str = 'center'
+    #used to highlight the difference between name and value in enums
+    hidden: int = 0
 
 
 @typechecked
@@ -79,6 +88,7 @@ def pad_text(text: str, text_align: TextAlign = TextAlign.left, width: int = 20,
     """
         This also has an example of a "python" switch statement equivalent using a dict
     """
+
     psuedo_switch_statement = {
         TextAlign.left: text.ljust(width, fillchar),
         TextAlign.right: text.rjust(width, fillchar),
