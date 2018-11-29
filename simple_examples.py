@@ -10,6 +10,7 @@ from unittest import TextTestRunner, TestLoader, TestCase
 from argparse import ArgumentParser
 from pytypes import typechecked
 from pydantic import validator, BaseModel, PydanticValueError
+from pydantic.dataclasses import dataclass
 from typing import NamedTuple, Tuple, Union
 from enum import Enum
 
@@ -67,10 +68,21 @@ def get_line_distance_polytype(line: Union[Line, Tuple[Point, Point], Tuple[Tupl
     )
 
 
+# NOTE Reference material for enums - https://docs.python.org/3/library/enum.html#creating-an-enum
+# It is important to note that enums are functional constants. The importance of that is we should endure to use the functional constant whenever possible, and reserve the `value`
+# for the rare moment where we actually want to use the value (primarily for storage). This will have consequences for how we store and use data inside of data classes.
+ 
+    # Note Nomenclature
+    # The class TextAlign is an enumeration (or enum)
+    # The attributes TextAlign.left, TextAlign.center, etc., are enumeration members (or enum members) and are functionally constants.
+    # The enum members have names and values (the name of TextAlign.left is left, the value of TextAlign.hidden is 0, etc.)
+
 class TextAlign(str, Enum):
     LEFT = 'LEFT'
     RIGHT = 'RIGHT'
     CENTER = 'CENTER'
+    # NOTE: Here to highlight the difference between name and value in enums
+    HIDDEN = 'ANYTHING'
 
 
 @typechecked
@@ -78,6 +90,7 @@ def pad_text(text: str, text_align: TextAlign = TextAlign.LEFT, width: int = 20,
     """
         This also has an example of a "python" switch statement equivalent using a dict
     """
+
     psuedo_switch_statement = {
         TextAlign.LEFT: text.ljust(width, fillchar),
         TextAlign.RIGHT: text.rjust(width, fillchar),
@@ -100,6 +113,14 @@ class Header(BaseModel):
         if value != 'Bearer {}'.format('SECRET_KEY'):
             raise AuthorizationError(value=value)
         return value
+
+@typechecked
+class AssessmentType(Enum):
+    GAIT: str = 'GAIT'
+
+
+class PoseJob(BaseModel):
+    assessment_type: AssessmentType
 
 
 if __name__ == '__main__':
@@ -177,5 +198,19 @@ if __name__ == '__main__':
                     json_input,
                     header.dict()
                 )
+
+            def test_pose_job(self):
+                # NOTE incoming data from some external source
+                incoming_data = {
+                    'assessment_type': 'GAIT'
+                }
+
+                job = PoseJob(**incoming_data)
+                self.assertEqual(
+                    incoming_data['assessment_type'],
+                    job.assessment_type.value
+                )
+                print('job.assessment_type: ', job.assessment_type)
+
 
         TextTestRunner().run(TestLoader().loadTestsFromTestCase(Test))
