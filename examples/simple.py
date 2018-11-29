@@ -114,9 +114,9 @@ class Header(BaseModel):
             raise AuthorizationError(value=value)
         return value
 
-@typechecked
-class AssessmentType(Enum):
-    GAIT: str = 'GAIT'
+
+class AssessmentType(str, Enum):
+    GAIT = 'GAIT'
 
 
 class PoseJob(BaseModel):

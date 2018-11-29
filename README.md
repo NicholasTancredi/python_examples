@@ -5,6 +5,8 @@ File with simple examples of most common use cases for:
 - pydantic
 - typing
 - enum
+- cython
+- importing structure (TODO: Add in Bens solution)
 
 # Python File Checklist
 - test using *unittest TestCase*
@@ -20,6 +22,6 @@ python -O
 ```
 You can run the **unittest** using
 ```
-python simple_examples.py --unittest
+python examples/simple.py --unittest
 ```
 Having this flag allows the python file to be called by other processes without running the unittest every time.
