@@ -1,2 +1,2 @@
-pipenv install --pre --python=$(which python)
+pipenv install --python=$(which python)
 pipenv shell
