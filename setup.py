@@ -10,6 +10,7 @@ setup(
     author_email='nicholastancredi@gmail.com',
     license='GPL3',
     packages=find_packages(),
+    # https://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html
     ext_modules=cythonize("examples/cython_array_sum/index.pyx"),
     install_requires=[
         'numpy',

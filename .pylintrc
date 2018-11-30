@@ -1,18 +1,3 @@
-Skip to content
-
-Search…
-All gists
-GitHub
-New gist
-@w0251251 
-19
-2 @xenxen/.pylintrc
-Created 5 years ago • 
- 
-<script src="https://gist.github.com/xen/6334976.js"></script>
-  
- Code  Revisions 1  Stars 19  Forks 2
- .pylintrc
 [MASTER]
 
 # Specify a configuration file.
@@ -278,24 +263,3 @@ ext-import-graph=
 # Create a graph of internal dependencies in the given file (report RP0402 must
 # not be disabled)
 int-import-graph=
- @w0251251
-   
- 
- 
-Leave a comment
-Attach files by dragging & dropping, selecting them, or pasting from the clipboard.
-
- Styling with Markdown is supported
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.

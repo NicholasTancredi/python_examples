@@ -10,7 +10,6 @@ from unittest import TextTestRunner, TestLoader, TestCase
 from argparse import ArgumentParser
 from pytypes import typechecked
 from pydantic import validator, BaseModel, PydanticValueError
-from pydantic.dataclasses import dataclass
 from typing import NamedTuple, Tuple, Union
 from enum import Enum
 
@@ -22,6 +21,12 @@ from math import hypot
 class Point(NamedTuple):
     y: int
     x: int
+
+
+a = Point(x=24, y=17)
+angle_b = a.angle.c
+# angle = a.y
+# angle_a = a.x
 
 
 @typechecked
