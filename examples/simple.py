@@ -8,14 +8,12 @@
 """
 from unittest import TextTestRunner, TestLoader, TestCase
 from argparse import ArgumentParser
-from pytypes import typechecked
-from pydantic import validator, BaseModel, PydanticValueError
-from pydantic.dataclasses import dataclass
 from typing import NamedTuple, Tuple, Union
 from enum import Enum
-
-# NOTE: Used in get_line_distance
 from math import hypot
+
+from pytypes import typechecked
+from pydantic import validator, BaseModel, PydanticValueError
 
 
 @typechecked
@@ -114,9 +112,9 @@ class Header(BaseModel):
             raise AuthorizationError(value=value)
         return value
 
-@typechecked
-class AssessmentType(Enum):
-    GAIT: str = 'GAIT'
+
+class AssessmentType(str, Enum):
+    GAIT = 'GAIT'
 
 
 class PoseJob(BaseModel):

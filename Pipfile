@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pydantic = "*"
 pytypes = "*"
+Cython = "*"
+numpy = "*"
 
 [dev-packages]
 pylint = "*"
